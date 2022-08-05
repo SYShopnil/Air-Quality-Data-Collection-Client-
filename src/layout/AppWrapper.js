@@ -1,9 +1,60 @@
-import React from 'react'
+import React,
+{
+  useEffect
+} from 'react'
+import {
+  connect
+} from "react-redux"
+import { checkPreviousSession } from '../store/login/action'
+import LoadingPage from "../../src/component/common/Loader/LoadingPage"
 
-const AppWrapper = ({children}) => {
+const AppWrapper = ({
+  children,
+  checkSession,
+  isLoadingForCheckSession
+}) => {
+
+  //all use effect part
+
+  //check the session
+  useEffect (() => {
+    (async() => {
+      await checkSession();
+    })()
+  }, [])
   return (
-    <div>{children}</div>
+    <>
+      {
+        isLoadingForCheckSession
+        ?
+        <LoadingPage/>
+        :
+        <div>{children}</div>
+      }
+    </>
   )
 }
 
-export default AppWrapper
+//get global state 
+const mapStateToProps = (state) => {
+    const {
+        login: {
+          isLoggedIn,
+          loggedInUser,
+          isLoading
+        }
+    } = state
+    return {
+        isLoggedIn,
+        isLoadingForCheckSession: isLoading
+    }
+}
+
+//get global dispatch 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        checkSession : () => dispatch (checkPreviousSession())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppWrapper) 

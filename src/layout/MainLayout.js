@@ -1,9 +1,66 @@
-import React from 'react'
+import React, {
+  useEffect,
+  useState
+} from 'react'
 import Link from "next/link"
+import {
+  useRouter
+} from "next/router"
+import {
+  connect
+} from "react-redux"
+import axios from "axios"
+import {
+  baseUrl
+} from "../../utils/baseUrl/baseUrl"
+import { 
+  startLogoutProcess,
+  logoutFailed 
+} from '../store/login/action'
+import mainLayoutStyle from "./MainLayout.module.css"
 
-const MainLayout = ({children}) => {
+const MainLayout = (
+  {
+    children,
+    isLoggedIn,
+    startLogoutProcess,
+    user
+  }
+) => {
+
+  //all local state 
+  const [isFirstTimeRender, setIsFirstTimeRender] = useState(false)
+
+  //all local variable 
+  const route = useRouter()
+  
+  //all handler 
+  const logoutHandler = async (e) => {
+    e.preventDefault();
+    try {
+      await startLogoutProcess();//do the logout process 
+    }catch (err) {
+      loggedOutError(err.message)
+    }
+  }
+  //all user effect 
+
+  //control the after logout part . It will redirect user to home page after logout successfully 
+  useEffect (() => {
+    isFirstTimeRender
+    &&
+    (
+      //check if the logout is successfully done then it will redirect user to home page
+      !isLoggedIn 
+        &&
+      route.push ("/")
+    )
+    setIsFirstTimeRender (true)
+  }, [isLoggedIn])
+
+
   return (
-    <>
+    <div >
       {/* header part */}
       <header>
           {/* navigation bar */}
@@ -24,37 +81,72 @@ const MainLayout = ({children}) => {
                 
                 {/* navbar content part */}
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                  {/* profile button */}
-                  <li className="nav-item">
-                    <Link href="/dashboard/profile">
-                      <a className="nav-link active" aria-current="page" href="#">Profile</a>
-                    </Link>
-                  </li>
-                  {/* Logout */}
-                  <li className="nav-item">
-                    <Link href="/">
-                        <a className="nav-link" href="#">Logout</a>
-                    </Link>
-                  </li>
-                  {/* Sign up */}
-                  <li className="nav-item">
-                    <Link href="/signUp">
-                        <a className="nav-link" href="#">Sign Up</a>
-                    </Link>
-                  </li>
-                  {/* Sign In */}
-                  <li className="nav-item">
-                    <Link href="/signIn">
-                        <a className="nav-link" href="#">Sign In</a>
-                    </Link>
-                  </li>
+
+                  {/* when user is logged in that time only profile option will be visible */}
+                  {
+                    isLoggedIn
+                    &&
+                    <>
+                      {/* profile button */}
+                      <li className="nav-item d-flex justify-content-center align-center">
+                        {/* title picture part */}
+                        <img 
+                        src= {`${user.titlePic}`} 
+                        alt= {`${user.name}'s title picture`} 
+                        className = {`${mainLayoutStyle.navbarProfilePicture}`}/>
+                        <Link href="/dashboard/profile">
+                          <a 
+                          className="nav-link active text-capitalize text-primary " 
+                          aria-current="page"
+                           
+                          >Welcome {user.name}!!</a>
+                        </Link>
+                      </li>
+                    </>
+                  }
+                  
+
+                  {/* when user is logged in that time only logout option will be visible */}
+                  {
+                    isLoggedIn
+                    &&
+                    <>
+                      {/* Logout */}
+                      <li className="nav-item">
+                        <a 
+                        className="nav-link" 
+                        onClick = {(e) => {logoutHandler(e)}}
+                        style = {{cursor: "pointer"}}>Logout</a>
+                      </li>
+                    </>
+                  }
+
+                  {/* when user is not logged in that time only sign in and login option will be visible */}
+                  {
+                    !isLoggedIn
+                    &&
+                    <>
+                       {/* Sign up */}
+                        <li className="nav-item">
+                          <Link href="/signUp">
+                              <a className="nav-link" href="#">Sign Up</a>
+                          </Link>
+                        </li>
+                        {/* Login In */}
+                        <li className="nav-item">
+                          <Link href="/login">
+                              <a className="nav-link" href="#">Log In</a>
+                          </Link>
+                        </li>
+                    </>
+                  }
                 </ul>
               </div>
             </div>
           </nav>
       </header>
 
-      <main>
+      <main style = {{minHeight: "85vh"}} >
         <section>{children}</section>
       </main>
 
@@ -62,8 +154,29 @@ const MainLayout = ({children}) => {
       <footer>
         <h4>@2022.All Rights Reserved</h4>
       </footer>
-    </>
+    </div>
   )
 }
+//get global state 
+const mapStateToProps = (state) => {
+    const {
+        login: {
+          isLoggedIn,
+          loggedInUser
+        }
+    } = state
+    return {
+        isLoggedIn,
+        user: loggedInUser
+    }
+}
 
-export default MainLayout
+//get global dispatch 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        startLogoutProcess : () => dispatch (startLogoutProcess()) ,
+        loggedOutError : (message) => dispatch (logoutFailed(message)) 
+    }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(MainLayout)

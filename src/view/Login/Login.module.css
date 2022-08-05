@@ -1,0 +1,10 @@
+.passwordChild {
+    position: absolute;
+        top: 16%;
+        right: 2%;
+        z-index: 999999999999;
+        cursor: pointer;
+}
+.passwordParent {
+    position: relative;
+}
