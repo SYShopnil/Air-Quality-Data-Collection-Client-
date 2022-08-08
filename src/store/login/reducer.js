@@ -7,7 +7,8 @@ import  {
     LOGGED_OUT_SUCCESSFUL,
     LOGGED_OUT_FAILED,
     IS_ALREADY_LOGGED_IN,
-    NO_USER_LOGGED_IN
+    NO_USER_LOGGED_IN,
+    GET_OWN_PROFILE
 } from "./actionType"
 
 const initialState = {
@@ -106,6 +107,15 @@ const loginReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 isLoading: false,
                 loggedInUser: null,
+                message: action.payload.message
+            }
+        }
+        case GET_OWN_PROFILE : {
+            return {
+                ...state, 
+                isLoggedIn: true,
+                isLoading: false,
+                loggedInUser: action.payload.user,
                 message: action.payload.message
             }
         }

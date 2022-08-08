@@ -7,10 +7,13 @@ import  {
     LOGGED_OUT_FAILED,
     LOGGED_OUT_REQUEST,
     IS_ALREADY_LOGGED_IN,
-    NO_USER_LOGGED_IN
+    NO_USER_LOGGED_IN,
+    GET_OWN_PROFILE,
+    UPDATE_SUCCESSFULLY
 } from "./actionType"
 import axios from "axios"
 import {baseUrl} from "../../../utils/baseUrl/baseUrl"
+import { addNewMessage } from "../responseMessage/action"
 
 
 //Login request 
@@ -151,6 +154,18 @@ const startLoginProcess = (formData) => async (dispatch, getState) => {
     }
 }
 
+//reload logged in user 
+const reloadLoggedInUser = (payloads) => {
+    // console.log({payloads})
+    return {
+        type: GET_OWN_PROFILE,
+        payload: {
+            user: payloads.user,
+            message: payloads.message
+        }
+    }
+}
+
 //start logout process 
 const startLogoutProcess = () => async (dispatch, getState) => {
     try {
@@ -240,10 +255,100 @@ const checkPreviousSession = () => async (dispatch, getState) => {
         ))
     }
 }
+
+//start reloadProcess 
+const reloadUserProcess = () => async (dispatch) => {
+    // console.log(`Hello I am from reload process action`)
+    try {
+        const {
+            data: {
+                message,
+                status,
+                user
+            }
+        } = await axios.get (
+            `${baseUrl}/agency/check/loggedIn/session`,
+            {
+                withCredentials: true
+            }
+        );
+        // console.log({user})
+        if (status == 202) {
+            dispatch (reloadLoggedInUser ({message, user}))
+        }else {
+            console.log(`No logged in user have found!!!`)
+        }
+    }catch (err) {
+        console.log(err.message)
+    }
+}
+
+//update successfully  
+// const updateSuccessfully = () => {
+//     return {
+//         type: UPDATE_SUCCESSFULLY,
+//         payload: 
+//     }
+// }
+
+//start update process 
+const profileUpdateProcess = (body) => async (dispatch) => {
+    try {
+        // console.log(body)
+        const {
+            data: {
+                status,
+                message
+            }
+        } = await axios.put (
+            `${baseUrl}/agency/profile/update`,
+            body,
+            {
+                withCredentials: true
+            }
+        ) //update profile api  
+        console.log(message)
+        if (status == 202) { //if successfully updated
+            dispatch (await reloadUserProcess());
+        }else if(status == 402) {
+             const errorMessage = [] //contains all body validation error
+                // console.log(message)
+                message.forEach(responseMessage => {
+                // console.log(typeof responseMessage.constraints)
+                    for (const property in responseMessage.constraints) {
+                        const body = {
+                            type: "negative",
+                            message: responseMessage.constraints[property]
+                        } //this will contains all validation error
+                                errorMessage.push (body);
+                    }
+                })
+                errorMessage.shift()
+                addNewMessage (errorMessage)
+        }else {
+            addNewMessage ([
+                {
+                    type: "negative",
+                    message
+                }
+            ])
+        }
+    }catch (err) {
+        addNewMessage ([
+                {
+                    type: "negative",
+                    message: err.message
+                }
+            ])
+    }
+}
+
 export {
     startLoginProcess,
     startLogoutProcess,
     logoutFailed,
     loggedInFailed,
-    checkPreviousSession
+    checkPreviousSession,
+    reloadUserProcess,
+    profileUpdateProcess
 }

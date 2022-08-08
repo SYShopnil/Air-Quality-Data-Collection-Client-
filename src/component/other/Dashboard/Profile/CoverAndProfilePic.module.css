@@ -1,0 +1,31 @@
+.ImageWrapper {
+    position: relative;
+}
+.Image {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-73%, 38%);
+}
+
+.content {
+        z-index: 999999999;
+        border: 5px solid white;
+        border-radius: 100%;
+        width:5rem !important;
+}
+.editButtonCover {
+        position: absolute;
+            right: 0;
+            top: 0;
+            color: white;
+            font-size: 154%;
+            font-weight: bold;
+}
+
+.editButtonTitle {
+        position: absolute;
+            color: white;
+            font-size: 100%;
+            font-weight: bold;
+}

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import singleFileUploaderStyle from  "./SingleFileUploader.module.css"
 
-const SingleFileUploader = ({filePassHandler, fileType, uploadFor}) => {
+const SingleFileUploader = ({filePassHandler, fileType, uploadFor, accepted}) => {
     const [fileBase64, setFileBase64] = useState ("")
   const handleChange = (e) => {
     e.preventDefault();
@@ -22,7 +22,8 @@ const SingleFileUploader = ({filePassHandler, fileType, uploadFor}) => {
             setFileBase64 (reader.result)
         } 
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file);    
+      // console.log(size)
     }
   };
 
@@ -34,6 +35,8 @@ const SingleFileUploader = ({filePassHandler, fileType, uploadFor}) => {
           placeholder=""
           type="file"
           className="form-control"
+          accept= {accepted ? accepted : ".png .jpg .jpeg"}
+          required
         ></input>
       </div>
       {

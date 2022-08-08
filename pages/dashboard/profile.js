@@ -2,13 +2,14 @@ import React from 'react'
 import PrivateRouteAuth from '../../src/component/common/PrivateRoute/PrivateRouteAuth'
 import DashboardLayout from '../../src/layout/DashboardLayout'
 import MainLayout from '../../src/layout/MainLayout'
+import Profile from '../../src/view/Dashboard/Profile'
 
 const profile = () => {
   return (
     <PrivateRouteAuth>
       <DashboardLayout>
         <div>
-          <h1>Hello I am from profile</h1>
+          <Profile/>
         </div>
       </DashboardLayout>
     </PrivateRouteAuth>

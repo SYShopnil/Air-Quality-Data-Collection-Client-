@@ -143,6 +143,8 @@ const SignUp = () => {
             formSubmissionStatus.status && router.push ("/login")
         }
     }, [formSubmissionStatus])
+
+    
     return (
         <div>
             <form>

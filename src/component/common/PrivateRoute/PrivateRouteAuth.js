@@ -16,25 +16,40 @@ const PrivateRouteAuth = ({
 }) => {
     //local  state 
     const [isLoading, setIsLoading] = useState (true)
-
+    const [isFirstTimeRender, setFirstTimeRender] = useState (false)
     //local variable 
     const route = useRouter()
-
+    // console.log(isLoggedIn)
     //all use effect 
     useEffect (() => {
-        !isLoggedIn
-        &&
-        route.push("/")
+        // console.log(`Hello`)
+        if (isFirstTimeRender) {
+            !isLoggedIn
+            &&
+            route.push("/login")
+            }
+    }, [isFirstTimeRender])
+
+    useEffect (() => {
+        setFirstTimeRender (true)
     }, [])
     // console.log(isLoggedIn)
   return (
     <>
         {
-            isLoggedIn
-            &&
+            isFirstTimeRender
+            ?
             <>
-                {children}
+                {
+                    isLoggedIn 
+                    && 
+                    <>
+                        {children}
+                    </>
+                }
             </>
+            :
+            <h1>Loading.....</h1>
             
         }
     </>

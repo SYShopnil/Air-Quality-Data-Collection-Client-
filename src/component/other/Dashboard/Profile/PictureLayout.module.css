@@ -1,0 +1,11 @@
+.updateCompWrapper {
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 65%;
+        background: white;
+        height: auto;
+        padding: 2%;
+        border: 2px solid gray;
+}
