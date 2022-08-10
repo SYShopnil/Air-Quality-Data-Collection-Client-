@@ -6,6 +6,7 @@ const ManualDataDisplay = ({
   deleteHandler ,
   saveHandler
 }) => {
+  // console.log(finalDataList)
   return (
     <div>
        {
@@ -22,16 +23,20 @@ const ManualDataDisplay = ({
                   <div className = {`row`}>
                     <ul className="list-group col-10">
                       <li class="list-group-item">
-                          <p><span className = {`fw-bold`}>Published Date: </span> <span>{item.publishedDate ? item.publishedDate : "Not Available"}</span> </p> 
-                          <p><span className = {`fw-bold`}>ValueOf PM 2.5: </span> <span>{item.valueOfPM ? item.valueOfPM : "Not Available"}</span> </p>  
-                          <p><span className = {`fw-bold`} >Rain Precipitation: </span> <span>{item.rainPrecipitation ? item.rainPrecipitation : "Not Available"}</span> </p>  
-                          <p><span className = {`fw-bold`}>Wind Speed: </span> <span>{item.windSpeed ? item.windSpeed : "Not Available"}</span> </p>  
-                          <p><span className = {`fw-bold`}>Visibility: </span> <span>{item.visibility ? item.visibility : "Not Available"}</span> </p>  
-                          <p><span className = {`fw-bold`}>Cloud Cover: </span> <span>{item.cloudCover ? item.cloudCover : "Not Available"}</span> </p>  
-                          <p><span className = {`fw-bold`}>Real Humidity: </span> <span>{item.relHumidity ? item.relHumidity : "Not Available"}</span> </p>  
-                          <p><span className = {`fw-bold`}>Station No: </span> <span>{item.stationNo ? item.stationNo : "Not Available"}</span> </p>  
-                          <p><span className = {`fw-bold`}>Division: </span> <span>{item.division ? item.division : "Not Available"}</span> </p>  
-                          <p><span className = {`fw-bold`}>Session: </span> <span>{item.season ? item.season : "Not Available"}</span> </p>  
+                        {
+                          item.map (items => {
+                            return (
+                              <p>
+                                  <span className = {`fw-bold`}>
+                                    {items.labelName}:   
+                                  </span> 
+                                  <span>
+                                    {items.field ?  ` ${items.field}` : " Not Available"}
+                                  </span> 
+                                </p> 
+                            )
+                          })
+                        }
                       </li>
                     </ul>
                      <a className = {`col-2 d-inline-block`}
@@ -62,15 +67,3 @@ const ManualDataDisplay = ({
 }
 
 export default ManualDataDisplay
-
-// publishedDate: "",
-//     valueOfPM: "",
-//     avgTemp: "",
-//     rainPrecipitation: "",
-//     windSpeed: "",
-//     visibility: "",
-//     cloudCover: "",
-//     relHumidity: "",
-//     stationNo: "",
-//     division: "",
-//     season: ""

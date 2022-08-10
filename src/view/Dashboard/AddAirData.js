@@ -7,6 +7,7 @@ import UploadByCSV from '../../component/other/Dashboard/AddAirData/UploadByCSV'
 import AddDataLayout from '../../layout/AddDataLayout'
 import {connect} from "react-redux"
 import { baseUrl } from '../../../utils/baseUrl/baseUrl'
+import ManualHandler from '../../component/other/Dashboard/AddAirData/ManualHandler'
 
 
 const AddAirData = (
@@ -35,9 +36,7 @@ const AddAirData = (
             selectFormat == "manually"
             &&
             /* manual process */
-            <ManualProcess
-                uploadFormat = {"manual"}
-            />
+            <ManualHandler/>
         }
         
         

@@ -35,7 +35,7 @@ const SingleFileUploader = ({filePassHandler, fileType, uploadFor, accepted}) =>
           placeholder=""
           type="file"
           className="form-control"
-          accept= {accepted ? accepted : ".png .jpg .jpeg"}
+          accept= {accepted ? accepted : [".png", ".jpg", ".jpeg"]}
           required
         ></input>
       </div>
