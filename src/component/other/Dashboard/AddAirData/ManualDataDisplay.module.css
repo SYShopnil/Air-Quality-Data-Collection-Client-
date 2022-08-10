@@ -1,0 +1,13 @@
+.listText {
+        text-align: center;
+            font-weight: bold;
+            font-size: 80%;
+}
+
+.deleteButton {
+    width: 25px;
+        height: 25px;
+        background: red;
+        padding: 5px;
+        color: white;
+}

@@ -35,7 +35,9 @@ const AddAirData = (
             selectFormat == "manually"
             &&
             /* manual process */
-            <ManualProcess/>
+            <ManualProcess
+                uploadFormat = {"manual"}
+            />
         }
         
         

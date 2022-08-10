@@ -14,7 +14,7 @@ const AddDataLayout = ({
 
   return (
     //add data layout wrapper 
-    <div className = {`row `} style = {{height: "80vh"}}>
+    <div className = {`row `} style = {{minHeight: "80vh"}}>
         {/* option choosing part  wrap */}
         <div className = {`col-12 col-lg-3 d-flex justify-content-center align-items-center`} >
            <div>
