@@ -3,3 +3,7 @@
     width: 30px;
     border-radius: 100%;
 }
+.bgFullWrapper {
+    background: rgb(233, 235, 236);
+        background: linear-gradient(90deg, rgba(233, 235, 236, 0.8435749299719888) 0%, rgba(233, 235, 236, 1) 50%, rgba(233, 235, 236, 0.9108018207282913) 100%, rgba(23, 80, 129, 0.8239670868347339) 100%);
+}

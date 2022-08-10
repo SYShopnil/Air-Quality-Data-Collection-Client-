@@ -5,6 +5,7 @@ import React, {
 import { connect} from "react-redux"
 import { profileUpdateProcess } from '../../../../store/login/action'
 import { addNewMessage } from '../../../../store/responseMessage/action'
+import profileDetailsStylesheet from "./ProfileDetails.module.css"
 
 const ProfileDetails = (
   {
@@ -144,7 +145,7 @@ const ProfileDetails = (
   return (
     <div>
       <table class="table">
-        <thead>
+        <thead className = {`${profileDetailsStylesheet.theadRowWrapper}`} >
             <tr>
               {
                 attributes.map ((atr, ind) => {
@@ -155,7 +156,7 @@ const ProfileDetails = (
               }
             </tr>
         </thead>
-        <tbody>
+        <tbody className = {`${profileDetailsStylesheet.tbodyRowWrapper}`}>
             {element}
         </tbody>
       </table>

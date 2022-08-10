@@ -4,11 +4,12 @@ import React, {
 } from 'react'
 import ShowAIrDataTable from '../../component/common/Dashboard/ShowAIrDataTable'
 import {connect} from "react-redux"
-import { getAllAirData } from '../../store/readAirData/action'
 import { addNewMessage } from '../../store/responseMessage/action'
+import { getAllDailyAirData } from '../../store/readDailyAirData/action'
 
-const ShowMyData = (
-    {
+
+const ShowMyDailyAirData = (
+     {
         fetchAirData,
         airData,
         pageNeed,
@@ -17,7 +18,16 @@ const ShowMyData = (
 ) => {
     // console.log(airData)
     //local state 
-    const [sortBySelectionValue, setSortBySelectionValue] = useState (["Date", "A-Z(By Division)", "Z-A(By Division)"])
+    const [sortBySelectionValue, setSortBySelectionValue] = useState (
+        [
+            "Latest", 
+            "Z-A(By median)", 
+            "Z-A(By mean)", 
+            "Z-A(By max)", 
+            "Z-A(By sum)", 
+            "Z-A(By count)"
+        ]
+    )
     // console.log(airData)
     // query data
     const [sortBy, setSortBy] = useState ("date")
@@ -27,16 +37,13 @@ const ShowMyData = (
         [
             "dataId", 
             "publishedDate", 
-            "valueOfPM",
-            "stationNo",
-            "division",
-            "season"
+            "area",
+            "mean",
+            "max",
+            "count"
         ]
     )
-    // console.log({currentPageNo})
-    // console.log({sortBy, searchBy})
-
-
+   
     //data fetch use effect
     useEffect (() => {
         (async () => {
@@ -58,7 +65,7 @@ const ShowMyData = (
     <div className = {`pt-3`}>
         {/* header  part */}
         <div>
-            <h1 className = {`text-center`}>My Air Data</h1>
+            <h1 className = {`text-center`}>My Daily Air Data</h1>
         </div>
 
         <div className = {`row`} >
@@ -73,10 +80,12 @@ const ShowMyData = (
                     {
                         sortBySelectionValue.map ((selectOption, ind) => {
                             let value = selectOption.toLowerCase()
-                            if (selectOption.split("(")[1]){
-                                value = selectOption.split ("(")[0]
+                            if (ind > 0) {
+                                if (selectOption.split("(")[1]){
+                                    value = selectOption.split ("(")[1].split(")")[0].split (" ").join("").toLowerCase()
+                                }
                             }
-                            // console.log(value)
+                            //   console.log(value)
                             return (
                                 <option 
                                     value = {value.toLowerCase()}
@@ -119,6 +128,7 @@ const ShowMyData = (
 }
 
 
+
 //get global state 
 const mapStateToProps = (state) => {
     const {
@@ -134,8 +144,8 @@ const mapStateToProps = (state) => {
 //get global dispatch 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchAirData : (searchBy, sortBy, pageNo, dataLimit) => dispatch (getAllAirData(searchBy, sortBy, pageNo, dataLimit))
+        fetchAirData : (searchBy, sortBy, pageNo, dataLimit) => dispatch (getAllDailyAirData(searchBy, sortBy, pageNo, dataLimit))
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps)(ShowMyData)
+export default connect (mapStateToProps, mapDispatchToProps)(ShowMyDailyAirData)

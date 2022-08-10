@@ -40,6 +40,7 @@ const UploadByCSV = (
                         uploadFormat: format,
                         csvBase64
                     } //make the body for create the new air data
+                    console.log(body)
                     const {
                         data: {
                             message,

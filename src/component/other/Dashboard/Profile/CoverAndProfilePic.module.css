@@ -10,7 +10,7 @@
 
 .content {
         z-index: 999999999;
-        border: 5px solid white;
+        border: 5px solid #C4C6C9;
         border-radius: 100%;
         width:5rem !important;
 }
@@ -18,14 +18,14 @@
         position: absolute;
             right: 0;
             top: 0;
-            color: white;
+            color: #0B0B0B ;
             font-size: 154%;
             font-weight: bold;
 }
 
 .editButtonTitle {
         position: absolute;
-            color: white;
+            color: #C40B0B0BC6C9;
             font-size: 100%;
             font-weight: bold;
 }

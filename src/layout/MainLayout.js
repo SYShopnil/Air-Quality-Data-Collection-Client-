@@ -67,7 +67,7 @@ const MainLayout = (
     setMessageResponses (response)
   }, [response])
   return (
-    <div>
+    <div className = {`${mainLayoutStyle.bgFullWrapper}`}>
       {
         isFirstTimeRender
         &&

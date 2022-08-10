@@ -5,12 +5,12 @@ import  {
 
 const initialState = {
     pageNeed: 1,
-    dataLimit: 5,
+    dataLimit: 2,
     airData: [],
     isFound: false
 }
 
-const dailyAirDataCollector = (state = initialState, action) => {
+const airDataCollector = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_AIR_DATA_STATE : {
             return {
@@ -31,4 +31,4 @@ const dailyAirDataCollector = (state = initialState, action) => {
     }
 }
 
-export default dailyAirDataCollector
+export default airDataCollector

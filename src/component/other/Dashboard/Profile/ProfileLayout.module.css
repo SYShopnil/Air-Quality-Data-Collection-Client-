@@ -1,10 +1,11 @@
 .profilePicturePartWrapper {
         border: 2px solid #BEC0C0 !important;
             padding: 14px !important;
+        background: #F8F9FA !important;
 }
 
 .active {
-    color: #E64132 ;
+        color: #FFFFFF !important;
 }
 .profileDetailsAndPasswordChangeButton {
     font-size: 1.1rem;

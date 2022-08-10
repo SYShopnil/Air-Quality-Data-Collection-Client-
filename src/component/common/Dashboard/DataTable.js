@@ -18,7 +18,7 @@ const DataTable = (
     for (let i = 1 ; i <=pageNeed ; i++ ) {
         if (i <= 3) data.push(i) 
     }
-    console.log({selectedPage})
+    // console.log({selectedPage})
     const paginationController = (e, type, pageNo) => {
         // console.log(type)
         e.preventDefault();

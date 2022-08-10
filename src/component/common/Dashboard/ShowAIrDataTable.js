@@ -7,18 +7,9 @@ const ShowAIrDataTable = ({
     fetchData,
     pageNeed,
     selectedPage,
-    setSelectPage
+    setSelectPage,
+    showHeaderField
 }) => {
-    const [showHeaderField, setShowHeaderField] = useState(
-        [
-            "dataId", 
-            "publishedDate", 
-            "valueOfPM",
-            "stationNo",
-            "division",
-            "season"
-        ]
-    )
     const [showAllHeaderField, setShowAllHeaderField] = useState(
         [
             "dataId", 

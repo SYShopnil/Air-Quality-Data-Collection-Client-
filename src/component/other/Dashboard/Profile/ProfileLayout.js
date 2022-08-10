@@ -33,7 +33,7 @@ const ProfileLayout = ({
     }, [responseMessage])
     return (
     // main wrapper
-    <div className = {`row mt-3 `}>
+    <div className = {`row mt-3  `}>
         
         {/* profile picture and cover picture part left side part */}
         <div className = {`col-12 col-md-4 ${profileStyle.profilePicturePartWrapper} `}>
