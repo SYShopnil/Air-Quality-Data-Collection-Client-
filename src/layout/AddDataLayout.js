@@ -32,7 +32,7 @@ const AddDataLayout = ({
         </div>
 
         {/* show data part wrap children wrapper */}
-        <div className = {`col-12 col-lg-9`}>
+        <div className = {`col-12 col-lg-9 d-flex justify-content-center align-items-center`}>
             {children}
         </div>
     </div>

@@ -9,6 +9,7 @@ import { addNewMessage } from '../../../../store/responseMessage/action'
 import axios from "axios"
 import { baseUrl } from '../../../../../utils/baseUrl/baseUrl'
 import messageCreator from "../../../../../utils/MessageCreator/messageCreator"
+import manualProcessStylesheet from "./ManualProcess.module.css"
 
 const ManualProcess = ({
   formData,
@@ -46,8 +47,8 @@ const ManualProcess = ({
   return (
     <div className = {`row`}>
       {/* header part */}
-      <div className = {`col-12`}>
-          <h1>Manually Add Air Data</h1>
+      <div className = {`col-12 ${manualProcessStylesheet.titleWrapper} ${finalList.length ? manualProcessStylesheet.titleBorderInFullList : manualProcessStylesheet.titleBorderInEmptyList  }`}>
+          <p>Manually Add Air Data</p>
         </div>
 
       {/* input part wrap */}
@@ -60,7 +61,7 @@ const ManualProcess = ({
               return (
                  <>
                   <div className="mb-3" key = {ind}>
-                    <label for="for" className="form-label">{formBody.labelName}</label>
+                    <label for="for" className= {`form-label ${manualProcessStylesheet.labelWrapper}`}>{formBody.labelName}</label>
                     <input 
                     type= {formBody.type}
                     className="form-control" 
@@ -77,13 +78,13 @@ const ManualProcess = ({
                     <>
                        <div className="form-check">
                           <input 
-                          className="form-check-input" 
+                          className="form-check-input " 
                           type="checkbox" 
                           defaultChecked={checked}
                           defaultValue = {checked}
                           onChange={(e) => setChecked (!checked)}
                           />
-                          <label className="form-check-label" for="flexCheckDefault">
+                          <label className= {`form-check-label ${manualProcessStylesheet.checkLabelWrapper}`} for="flexCheckDefault">
                             For Today
                           </label>
                       </div>

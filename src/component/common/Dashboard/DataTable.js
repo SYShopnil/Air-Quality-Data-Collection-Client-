@@ -2,6 +2,7 @@ import React, {
     useState
 } from 'react'
 import DataNotfFound from './DataNotfFound'
+import tableHeaderStyle from "./DataTable.module.css"
 
 const DataTable = (
     {
@@ -41,14 +42,14 @@ const DataTable = (
         // }
     }
   return (
-    <div>
+    <div className = {``}>
         <table className="table mt-3">
-            <thead>
-                <tr className="table-active">
+            <thead className ={``}>
+                <tr className= {`table-active  ${tableHeaderStyle.tableHeader}`}>
                         {
                             showHeaderField.map (head => {
                                 return (
-                                    <th>{head}</th>
+                                    <th className = {`text-capitalize`}>{head}</th>
                                 )
                             })
                         }
@@ -63,6 +64,7 @@ const DataTable = (
                  <tbody>
                         {
                             fetchData.map ((data, ind) => {
+                                console.log(Object.keys (data))
                                 return (
                                     <tr key = {ind}>
                                         {
@@ -71,14 +73,14 @@ const DataTable = (
                                                 if (head == "publishedDate") {
                                                     publishedData = new Date (data[head]).toLocaleDateString()
                                                 }
-                                                return  <td>{publishedData}</td>
+                                                return  <td >{publishedData}</td>
                                             }))
                                         }
                                         <td>
-                                                <button className = {`btn btn-primary`}>Update</button>
+                                                <button className = {`btn btn-dark`}>Update</button>
                                             </td>
                                             <td>
-                                                <button className = {`btn btn-danger`}>Delete</button>
+                                                <button className = {`btn btn-light`}>Delete</button>
                                             </td>
                                     </tr>
                                 )
@@ -104,9 +106,9 @@ const DataTable = (
                             &&
                             pageNeed > 1 
                             &&
-                            <li  className= {`page-item ${selectButtonType == "prev" &&  "active"}`}>
+                            <li  className= {`page-item ${selectButtonType == "prev" && "active"  }`}>
                                 <a 
-                                className="page-link" 
+                                 className= {`page-link ${tableHeaderStyle.paginationButton}`}
                                  onClick = {(e) => paginationController(e, "prev")}
                                 style = {{cursor: "pointer"}}
                                 >
@@ -119,8 +121,8 @@ const DataTable = (
                         {/* pagination middle data  */}
                         {data.map (d => {
                             return (
-                                <li className= {`page-item ${selectedPage == d && selectButtonType == "normal" &&  "active"} ${defaultSelection == 1 && d == 1 && "active"}`}>
-                                    <a className="page-link"
+                                <li className= {`page-item ${selectedPage == d && selectButtonType == "normal" && "active"} ${defaultSelection == 1 && d == 1 && "active"} `}>
+                                    <a className= {`page-link ${tableHeaderStyle.paginationButton}`}
                                     style = {{cursor: "pointer"}}
                                     onClick = {(e) => paginationController (e, "normal", d)  }>{d}</a>
                                 </li>
@@ -136,7 +138,7 @@ const DataTable = (
                             &&
                             <li className= {`page-item ${selectButtonType == "prev" &&  "active"}`}>
                                 <a 
-                                className="page-link"
+                                 className= {`page-link ${tableHeaderStyle.paginationButton}`}
                                  href="#" 
                                  aria-label="Next"
                                  onClick = {(e) => paginationController(e, "next")}

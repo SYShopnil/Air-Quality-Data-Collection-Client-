@@ -1,0 +1,19 @@
+.titleWrapper {
+        text-align: center;
+            font-size: 170%;
+            font-weight: 700;
+            /* border-bottom: 2px dashed rgb(89, 167, 233); */
+            margin-bottom: 4%;
+}
+.labelWrapper {
+    font-weight: 700 !important;
+}
+.checkLabelWrapper {
+    font-weight: 400 !important;
+}
+.titleBorderInEmptyList {
+    border-bottom: 2px dashed rgb(89, 167, 233);
+}
+.titleBorderInFullList {
+    border-bottom: 2px dashed rgb(244, 248, 252);
+}

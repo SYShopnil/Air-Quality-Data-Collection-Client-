@@ -1,7 +1,7 @@
 .listText {
         text-align: center;
             font-weight: bold;
-            font-size: 80%;
+            font-size: 90%;
 }
 
 .deleteButton {
@@ -10,4 +10,33 @@
         background: red;
         padding: 5px;
         color: white;
+}
+.listParagraph {
+        display: inline-block;
+            background: white;
+            padding: 6%;
+            border-radius: 100%;
+            height: 50%;
+            width: 25%
+}
+
+.noDataFoundWrapper {
+            min-height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            
+}
+.noDataFoundParagraphWrapper {
+    background: linear-gradient(90deg, rgba(89, 167, 233, 1) 0%, rgba(154, 193, 227, 1) 50%, rgba(108, 174, 231, 1) 100%, rgba(23, 80, 129, 0.8239670868347339) 100%);
+        padding: 25%;
+        border-radius: 2% !important;
+            box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 80%);
+                -webkit-box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 80%);
+                -moz-box-shadow: 4px 3px 14px -5px rgba(0, 0, 0, 0.8);
+}
+.noDataFoundParagraph{
+    font-size : 111% !important;
+    font-weight: 700;
 }

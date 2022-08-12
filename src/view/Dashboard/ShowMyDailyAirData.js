@@ -6,7 +6,7 @@ import ShowAIrDataTable from '../../component/common/Dashboard/ShowAIrDataTable'
 import {connect} from "react-redux"
 import { addNewMessage } from '../../store/responseMessage/action'
 import { getAllDailyAirData } from '../../store/readDailyAirData/action'
-
+import showDailyDataStyle from "./ShowMyDailyData.module.css"
 
 const ShowMyDailyAirData = (
      {
@@ -102,7 +102,7 @@ const ShowMyDailyAirData = (
             <div className = {`col-0 col-md-4`}></div>
             
             {/* search bar */}
-            <div className = {`col-12 col-md-4 `}>
+            <div className = {`col-12 col-md-4 d-flex justify-content-start align-items-end `}>
                  <form className ="d-flex">
                     <input 
                     className ="form-control me-2" 
@@ -113,7 +113,7 @@ const ShowMyDailyAirData = (
                 </form>
             </div>
             {/* table part  wrapper main*/}
-            <div>
+            <div className = {`${showDailyDataStyle.tableWrapper} mt-4 p-3`}>
                 <ShowAIrDataTable
                     fetchData = {airData}
                     pageNeed = {pageNeed}

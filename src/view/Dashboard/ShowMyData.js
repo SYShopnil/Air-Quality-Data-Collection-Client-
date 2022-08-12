@@ -6,6 +6,7 @@ import ShowAIrDataTable from '../../component/common/Dashboard/ShowAIrDataTable'
 import {connect} from "react-redux"
 import { getAllAirData } from '../../store/readAirData/action'
 import { addNewMessage } from '../../store/responseMessage/action'
+import showMyDataStyleSheet from "./ShowMyData.module.css"
 
 const ShowMyData = (
     {
@@ -57,14 +58,14 @@ const ShowMyData = (
     //show my air data wrapper
     <div className = {`pt-3`}>
         {/* header  part */}
-        <div>
-            <h1 className = {`text-center`}>My Air Data</h1>
+        <div className = {`${showMyDataStyleSheet.titleHeaderWrapper}`}>
+            <p className = {`text-center ${showMyDataStyleSheet.titleParagraphWrapper}`}>My Air Data</p>
         </div>
 
         <div className = {`row`} >
             {/* sorting selection part */}
             <div className = {`col-12 col-md-3 `}>
-                <label htmlFor="sortBy" className = {`mb-2`}>Sort By</label>
+                <label htmlFor="sortBy" className = {`mb-2 fw-bold`}>Sort By</label>
                 <select 
                 className= {`form-select form-select-sm`} 
                 aria-label=".form-select-sm example"
@@ -93,10 +94,10 @@ const ShowMyData = (
             <div className = {`col-0 col-md-4`}></div>
             
             {/* search bar */}
-            <div className = {`col-12 col-md-4 `}>
+            <div className = {`col-12 col-md-4 d-flex justify-content-start align-items-end`}>
                  <form className ="d-flex">
                     <input 
-                    className ="form-control me-2" 
+                    className = {`form-control me-2  ${showMyDataStyleSheet.searchBar} `} 
                     type="search" 
                     placeholder="Search" 
                     aria-label="Search"
@@ -104,7 +105,7 @@ const ShowMyData = (
                 </form>
             </div>
             {/* table part  wrapper main*/}
-            <div>
+            <div className = {`bg-danger mt-3 p-2  ${showMyDataStyleSheet.tableWrapper}`}>
                 <ShowAIrDataTable
                     fetchData = {airData}
                     pageNeed = {pageNeed}

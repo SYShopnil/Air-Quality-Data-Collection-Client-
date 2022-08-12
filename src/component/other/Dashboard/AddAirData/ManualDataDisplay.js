@@ -18,7 +18,9 @@ const ManualDataDisplay = ({
             finalDataList.map ((item, ind) => {
               return (
                 <div className = {`col-12 p-5`}>
-                  <p className = {`${manualDataStyleSheet.listText}`}>{++ind}</p>
+                  <div className ={`${manualDataStyleSheet.listText}`}>
+                    <p className = {`${manualDataStyleSheet.listParagraph}`}>{++ind}</p>
+                  </div>
                   {/* list wrapper */}
                   <div className = {`row`}>
                     <ul className="list-group col-10">
@@ -53,13 +55,15 @@ const ManualDataDisplay = ({
           <div className = {`col-3`}></div>
           <div className = {`col-8`}>
             <button 
-            className = {`btn btn-primary`}
+            className = {`btn btn-dark`}
             onClick = {(e) => saveHandler (e)}>Save Data</button>
           </div>
         </div>
         :
-        <div>
-          <h1>No Air Data in the list.....</h1>
+        <div className ={`${manualDataStyleSheet.noDataFoundWrapper}`} >
+          <div className ={`${manualDataStyleSheet.noDataFoundParagraphWrapper}`} >
+            <p className ={`${manualDataStyleSheet.noDataFoundParagraph}`} >No Air Data in the list.....</p>
+          </div>
         </div>
        }
     </div>

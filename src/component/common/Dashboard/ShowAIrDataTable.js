@@ -29,7 +29,7 @@ const ShowAIrDataTable = ({
     // console.log(fetchData)
     return (
     //table part  sub wrapper 
-    <div>
+    <div >
         <DataTable
             fetchData = {fetchData}
             showHeaderField = {showHeaderField}

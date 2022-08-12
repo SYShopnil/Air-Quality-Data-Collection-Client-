@@ -1,8 +1,11 @@
 import React from 'react'
+// import logingPageStyle from "./LoadingPage.css"
 
 const LoadingPage = () => {
   return (
-    <div>Loading.....</div>
+    <div class="ring">Loading
+      <span class = "loaderSpan"></span>
+    </div>
   )
 }
 

@@ -9,7 +9,6 @@ import {connect} from "react-redux"
 import { baseUrl } from '../../../utils/baseUrl/baseUrl'
 import ManualHandler from '../../component/other/Dashboard/AddAirData/ManualHandler'
 
-
 const AddAirData = (
     {
         selectFormat

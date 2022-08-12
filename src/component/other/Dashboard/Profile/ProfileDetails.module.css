@@ -4,3 +4,7 @@
 .theadRowWrapper {
         background: #F8F9FA !important; 
 }
+.editButtonWrap {
+        background: black !important;
+        border-color: black !important;
+}

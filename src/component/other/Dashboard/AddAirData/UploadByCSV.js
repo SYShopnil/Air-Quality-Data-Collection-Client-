@@ -9,6 +9,7 @@ import {
 import { addNewMessage } from '../../../../store/responseMessage/action'
 import axios from "axios"
 import errorMessageCreator from "../../../../../utils/MessageCreator/messageCreator"
+import uploadByCsvStylesheet from "./UploadByCsv.module.css"
 
 const UploadByCSV = (
     {
@@ -53,12 +54,13 @@ const UploadByCSV = (
                             withCredentials: true
                         }
                     )
-                    console.log(status)
+                    // console.log(status)
                     if (status == 201) { //if successfully add new air data
                         newMessage ([{
                             type: "positive",
                             message
                         }])
+                        setCsvBase64 ("")
                     }else if (status == 402) { // if any body input validation  failed 
                         const errorMessage = errorMessageCreator (message) //create the structure of error message 
                         newMessage (errorMessage)
@@ -80,15 +82,17 @@ const UploadByCSV = (
             })()
         }
     }, [isLoading])
-
+    console.log(csvBase64)
 
   return (
-    <div>
+    <div className = {`flex-grow-1  p-5 ${uploadByCsvStylesheet.csvPartWrap} ${csvBase64 ? uploadByCsvStylesheet.uploaderSuccessfully : uploadByCsvStylesheet.waitForUpload }`}>
         <CsvFileSelector
             isLoading = {isLoading}
             setIsLoading = {setIsLoading}
             uploadHandler = {addAirDataHandler}
             buttonName = {buttonName}
+            csvBase64 = {csvBase64}
+            setCsvBase64 = {setCsvBase64}
         />
     </div>
   )

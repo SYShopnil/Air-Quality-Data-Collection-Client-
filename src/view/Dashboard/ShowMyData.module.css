@@ -1,0 +1,28 @@
+.titleHeaderWrapper {
+    text-align: center;
+        font-size: 170%;
+        font-weight: 700;
+        border-bottom: 2px dashed rgb(89, 167, 233);
+        margin-bottom: 4%;
+        /* border-bottom: 2px dashed rgb(244, 248, 252); */
+}
+
+.titleParagraphWrapper {
+        text-align: center;
+            font-size: 110%;
+            font-weight: 700;
+            /* border-bottom: 2px dashed rgb(89, 167, 233); */
+            margin-bottom: 4%;
+}
+/* .searchBarWrap {
+    display: flex;
+        justify-content: start;
+        align-items: end;
+} */
+
+.tableWrapper {
+   background-color: #C4C6C9 !important;
+border-radius: 1%;
+    box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 80%);
+    -webkit-box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 80%);
+}

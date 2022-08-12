@@ -75,7 +75,7 @@ const MainLayout = (
           {/* header part */}
           <header>
               {/* navigation bar */}
-              <nav className="navbar navbar-expand-lg navbar-light bg-light">
+              <nav className= {`navbar navbar-expand-lg navbar-light bg-light ${`${mainLayoutStyle.navbar}`} p-2`}>
                 <div className="container">
                   <Link href="/">
                     <a className="navbar-brand" href="#">Air Quality App</a>
@@ -107,10 +107,10 @@ const MainLayout = (
                             className = {`${mainLayoutStyle.navbarProfilePicture}`}/>
                             <Link href="/dashboard/profile">
                               <a 
-                              className="nav-link active text-capitalize text-primary " 
+                              className= {`nav-link active text-capitalize text-primar  `} 
                               aria-current="page"
                               
-                              >Welcome {user.name}!!</a>
+                              ><span className = {`${mainLayoutStyle.loggedInUserNameTitle}`}>Welcome</span> <span className = {`${mainLayoutStyle.loggedInUserName}`}>{user.name}!!</span></a>
                             </Link>
                           </li>
                         </>

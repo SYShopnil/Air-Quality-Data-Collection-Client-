@@ -1,0 +1,18 @@
+.handlerWrapper {
+    margin-top: 5%;
+        border-radius: 2%;
+        padding-left: 7%;
+        padding: 5%;
+        height: auto;
+            box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 80%);
+                -webkit-box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 80%);
+}
+
+.mainWrapperBgEmptyList {
+    background: #F8F9FA !important;
+}
+.mainWrapperBgHaveList {
+    background: rgb(89, 167, 233);
+        background: linear-gradient(90deg, rgba(89, 167, 233, 1) 0%, rgba(154, 193, 227, 1) 50%, rgba(108, 174, 231, 1) 100%, rgba(23, 80, 129, 0.8239670868347339) 100%);
+}
+

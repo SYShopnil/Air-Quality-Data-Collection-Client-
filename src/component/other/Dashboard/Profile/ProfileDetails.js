@@ -102,7 +102,9 @@ const ProfileDetails = (
                 value = {updateProfileData[property]}
                 onChange = {(e) =>setUpdateProfileData ({...updateProfileData, [property]:e.target.value})}/>
                 
-                <a  onClick = {(e) => {crossSignHandler(e)}}>
+                <a  
+                onClick = {(e) => {crossSignHandler(e)}}
+                className = {``}>
                   <i  class="fa-solid fa-xmark"></i>
                 </a>
               </div>
@@ -124,14 +126,18 @@ const ProfileDetails = (
                     Loading...
                   </>
                   :
-                  <button className = {`btn btn-primary`} onClick = {(e) => updateHandler(e,property )}>
+                  <button 
+                  className = {`btn btn-primary ${profileDetailsStylesheet.editButtonWrap}`} 
+                  onClick = {(e) => updateHandler(e,property )}>
                   <i class="fa-solid fa-check-double"></i>
                 </button>
               }
               </>
               :
               <>
-                  <button className = {`btn btn-primary`} onClick = {(e) => updateSelectHandler(e,property )}>
+                  <button 
+                  className = {`btn btn-primary  ${profileDetailsStylesheet.editButtonWrap}`} 
+                  onClick = {(e) => updateSelectHandler(e,property )}>
                   <i class="fa-solid fa-pen-to-square"></i>
                 </button>
               </>

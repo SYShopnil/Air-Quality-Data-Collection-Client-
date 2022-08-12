@@ -1,0 +1,11 @@
+.tableHeader {
+    background: #F8F9FA !important;
+}
+.paginationActive {
+    
+    background: #1C1F23 !important;
+}
+
+.paginationButton {
+    border-radius: 100% !important;
+}

@@ -112,7 +112,7 @@ const PasswordChange = ({
         </div>
         <button 
         type="submit" 
-        className="btn btn-success"
+        className="btn btn-dark"
         onClick = {(e) => updateHandler (e)}>Update</button>
       </form>
     </div>

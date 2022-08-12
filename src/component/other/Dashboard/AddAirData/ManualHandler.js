@@ -7,6 +7,7 @@ import {connect} from "react-redux"
 import { baseUrl } from '../../../../../utils/baseUrl/baseUrl'
 import { addNewMessage } from '../../../../store/responseMessage/action'
 import axios from 'axios'
+import manualHandlerForAddAirDataStyle from "./ManualHandler.module.css"
 
 const ManualHandler = ({
     addNewErrorMessage
@@ -98,6 +99,7 @@ const ManualHandler = ({
     const [formData, setFormData] = useState (formStructure)
     const [checked, setChecked] = React.useState(false);
     const [finalList, setFinalList] = useState ([])
+
     // console.log(formData)
 
     //all handler 
@@ -185,7 +187,7 @@ const ManualHandler = ({
 
 
   return (
-    <div>
+    <div className = {`${manualHandlerForAddAirDataStyle.handlerWrapper} ${(finalList.length) ? manualHandlerForAddAirDataStyle.mainWrapperBgHaveList : manualHandlerForAddAirDataStyle.mainWrapperBgEmptyList  } ` }>
         <ManualProcess
             formData = {formData}
             setFormData = {setFormData}
