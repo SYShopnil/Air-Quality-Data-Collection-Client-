@@ -60,7 +60,7 @@ const ManualDataDisplay = ({
           </div>
         </div>
         :
-        <div className ={`${manualDataStyleSheet.noDataFoundWrapper}`} >
+        <div className ={`${manualDataStyleSheet.noDataFoundWrapper} `} >
           <div className ={`${manualDataStyleSheet.noDataFoundParagraphWrapper}`} >
             <p className ={`${manualDataStyleSheet.noDataFoundParagraph}`} >No Air Data in the list.....</p>
           </div>
