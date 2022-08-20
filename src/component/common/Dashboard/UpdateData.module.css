@@ -1,0 +1,17 @@
+.formWrap {
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #F8F9FA;
+        padding: 5%;
+        width: 55%;
+    }
+.cancelButton {
+        position: absolute;
+            right: 7%;
+            top: 5%;
+            background: red;
+            color: #F8F9FA;
+            padding: 2% 2%;
+}
