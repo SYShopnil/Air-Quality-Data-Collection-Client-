@@ -163,7 +163,7 @@ const MainLayout = (
               {children}
             </div>
             {/* message part */}
-    
+{/*     
               {
                 !!messageResponse.length
                 &&
@@ -182,7 +182,7 @@ const MainLayout = (
                     }) 
                   }
                 </>
-              }
+              } */}
              
       
           </main>

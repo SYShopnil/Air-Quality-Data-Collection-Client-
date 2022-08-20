@@ -4,7 +4,7 @@ import React, {
 } from 'react'
 import ShowAIrDataTable from '../../component/common/Dashboard/ShowAIrDataTable'
 import {connect} from "react-redux"
-import { getAllAirData } from '../../store/readAirData/action'
+import { getAllAirData, updateAirData } from '../../store/readAirData/action'
 import { addNewMessage } from '../../store/responseMessage/action'
 import showMyDataStyleSheet from "./ShowMyData.module.css"
 
@@ -16,14 +16,13 @@ const ShowMyData = (
         dataLimit
     }
 ) => {
-    // console.log(airData)
     //local state 
     const [sortBySelectionValue, setSortBySelectionValue] = useState (["Date", "A-Z(By Division)", "Z-A(By Division)"])
-    // console.log(airData)
     // query data
     const [sortBy, setSortBy] = useState ("date")
     const [searchBy, setSearchBy] = useState ("")
     const [currentPageNo, setCurrentPageNo] = useState(1)
+    const updateType = "airData"
     const [showHeaderField, setShowHeaderField] = useState(
         [
             "dataId", 
@@ -34,10 +33,6 @@ const ShowMyData = (
             "season"
         ]
     )
-    // console.log({currentPageNo})
-    // console.log({sortBy, searchBy})
-
-
     //data fetch use effect
     useEffect (() => {
         (async () => {
@@ -112,6 +107,12 @@ const ShowMyData = (
                     selectedPage = {currentPageNo}
                     setSelectPage = {setCurrentPageNo}
                     showHeaderField = {showHeaderField}
+
+                    sortBy = {sortBy}
+                    searchBy = {searchBy}
+                    pageNo = {currentPageNo}
+                    dataLimit = {dataLimit}
+                    updateType = {updateType}
                 />
             </div>
         </div>
@@ -135,7 +136,7 @@ const mapStateToProps = (state) => {
 //get global dispatch 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchAirData : (searchBy, sortBy, pageNo, dataLimit) => dispatch (getAllAirData(searchBy, sortBy, pageNo, dataLimit))
+        fetchAirData : (searchBy, sortBy, pageNo, dataLimit) => dispatch (getAllAirData(searchBy, sortBy, pageNo, dataLimit)),
     }
 }
 

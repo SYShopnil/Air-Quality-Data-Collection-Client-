@@ -8,7 +8,12 @@ const ShowAIrDataTable = ({
     pageNeed,
     selectedPage,
     setSelectPage,
-    showHeaderField
+    showHeaderField,
+    sortBy,
+    searchBy,
+    pageNo,
+    dataLimit,
+    updateType
 }) => {
     const [showAllHeaderField, setShowAllHeaderField] = useState(
         [
@@ -36,6 +41,12 @@ const ShowAIrDataTable = ({
             pageNeed = {pageNeed}
             selectedPage = {selectedPage}
             setSelectPage = {setSelectPage}
+
+            sortBy = {sortBy}
+            searchBy = {searchBy}
+            pageNo = {pageNo}
+            dataLimit = {dataLimit}
+            updateType ={updateType}
         />
     </div>
   )

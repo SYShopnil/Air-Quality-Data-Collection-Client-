@@ -28,6 +28,7 @@ const ShowMyDailyAirData = (
             "Z-A(By count)"
         ]
     )
+    const updateType = "dailyAirData"
     // console.log(airData)
     // query data
     const [sortBy, setSortBy] = useState ("date")
@@ -120,6 +121,11 @@ const ShowMyDailyAirData = (
                     selectedPage = {currentPageNo}
                     setSelectPage = {setCurrentPageNo}
                     showHeaderField = {showHeaderField}
+                    updateType = {updateType}
+                    sortBy = {sortBy}
+                    searchBy = {searchBy}
+                    pageNo = {currentPageNo}
+                    dataLimit = {dataLimit}
                 />
             </div>
         </div>

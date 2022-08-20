@@ -3,7 +3,10 @@ import  {
     UPDATE_AIR_DATA,
     DELETE_AIR_DATA,
     UPDATE_AIR_DATA_STATE,
-    AIR_DATA_NOT_FOUND
+    AIR_DATA_NOT_FOUND,
+    SUCCESSFULLY_UPDATE,
+    REQUEST_FOR_UPDATE,
+    FAILED_TO_UPDATE
 } from "./actionType"
 import axios from "axios"
 import {baseUrl} from "../../../utils/baseUrl/baseUrl"
@@ -19,7 +22,6 @@ const getSuccessfully = (pageNeed, airData, ) => {
         }
     }
 }
-
 const failedToGetData = () => {
     return {
         type : AIR_DATA_NOT_FOUND
@@ -28,7 +30,7 @@ const failedToGetData = () => {
 
 
 //get all air data 
-const getAllAirData = (searchBy, sortBy, pageNo, dataLimit,) => async (dispatch) => {
+const getAllAirData = (searchBy, sortBy, pageNo, dataLimit) => async (dispatch) => {
      try {
         const formData ={
             searchBy,
@@ -50,7 +52,9 @@ const getAllAirData = (searchBy, sortBy, pageNo, dataLimit,) => async (dispatch)
             withCredentials: true
         }) //fetch the logged in request from the server 
         // console.log({message})
-        if (status == 202) { //logged in successfully request
+        // console.log({airData})
+        // console.log({formData})
+        if (status == 202) { //data get successfully request
             dispatch (getSuccessfully (pageNeed, airData))
             dispatch(addNewMessage([
                 {
@@ -96,7 +100,76 @@ const getAllAirData = (searchBy, sortBy, pageNo, dataLimit,) => async (dispatch)
     }
 }
 
+//request for update 
+const requestForUpdate = () => {
+    return {
+        type: REQUEST_FOR_UPDATE
+    }
+}
+
+//successfully update
+const successfullyUpdate = () => {
+    return {
+        type: SUCCESSFULLY_UPDATE
+    }
+}
+
+//failed to update 
+const failedToUpdate = () => {
+    return {
+        type: FAILED_TO_UPDATE
+    }
+}
+
+//update air data 
+const updateAirData = (updateAirData, dataId, searchBy, sortBy, pageNo, dataLimit) => async (dispatch) => {
+    dispatch(requestForUpdate())
+    try {
+        // console.log({updateAirData, dataId, searchBy, sortBy, pageNo, dataLimit})
+        const {
+            data: {
+                message,
+                status
+            }
+        } = await axios.put (
+            `${baseUrl}/airData/update/${dataId}`,
+            updateAirData,
+            {
+                withCredentials: true
+            }
+        )
+         if (status == 202) { //if successfully update data 
+            await dispatch (getAllAirData (searchBy, sortBy, pageNo, dataLimit))
+            dispatch(addNewMessage([
+                {
+                    type: "positive",
+                    message
+                }
+            ])) //change successfully get data
+            dispatch (successfullyUpdate)
+        }else {
+            dispatch(addNewMessage([
+                {
+                    type: "negative",
+                    message
+                }
+            ])) //change successfully get data
+        }
+    }catch(err) {
+         dispatch (addNewMessage(
+            [
+                {
+                    message: err.message, 
+                    type: "negative"
+                }
+            ]
+            )) //if any runtime error has found
+            dispatch (failedToUpdate(successfullyUpdate()))
+    } 
+}
+
 //get all
 export {
-    getAllAirData
+    getAllAirData,
+    updateAirData
 }
