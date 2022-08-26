@@ -7,7 +7,7 @@ import Profile from '../../src/view/Dashboard/Profile'
 const profile = () => {
   return (
     <PrivateRouteAuth>
-      <DashboardLayout>
+      <DashboardLayout active = {`My Profile`} >
         <div>
           <Profile/>
         </div>

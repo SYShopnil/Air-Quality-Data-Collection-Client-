@@ -6,7 +6,7 @@ import AddAirData from '../../src/view/Dashboard/AddAirData'
 const addAirData = () => {
   return (
     <PrivateRouteAuth>
-      <DashboardLayout>
+      <DashboardLayout active = {`Add Air Data`}>
         <AddAirData/>
     </DashboardLayout>
     </PrivateRouteAuth> 

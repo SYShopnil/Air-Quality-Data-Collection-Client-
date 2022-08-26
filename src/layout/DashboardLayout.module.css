@@ -1,3 +1,12 @@
 .active {
     background: red;
 }
+
+.textWrapWithOutActive {
+        color: #212529;
+            font-weight: bold;
+}
+.textWrapActive {
+    color: #298EC2;
+    font-weight: bold;
+}

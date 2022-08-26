@@ -35,7 +35,7 @@ const DataTable = (
     for (let i = 1 ; i <=pageNeed ; i++ ) {
         if (i <= 3) data.push(i) 
     }
-    // console.log({selectedPage})
+    // console.log({selectedPage, condition: 3 <= selectedPage})
     const paginationController = (e, type, pageNo) => {
         // console.log(type)
         e.preventDefault();
@@ -203,7 +203,7 @@ const DataTable = (
                             {
                                 pageNeed > 3
                                 &&
-                                pageNeed <= selectedPage
+                                3 <= selectedPage
                                 &&
                                 <li className= {`page-item ${selectButtonType == "prev" &&  "active"}`}>
                                     <a 

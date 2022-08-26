@@ -17,11 +17,19 @@ const AddDailyAirData = (
         {
             selectFormat == "csv"
             &&
-            <UploadByCSV
-                format = {"csv"}
-                apiUrl = {`${baseUrl}/airData/daily/create`}
-                buttonName = {`Upload Daily Data`}
-            />
+            <div style = {{display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "85vh"}}>
+                <div style = {{width: "100%"}}>
+                    <UploadByCSV
+                        format = {"csv"}
+                        apiUrl = {`${baseUrl}/airData/daily/create`}
+                        buttonName = {`Upload Daily Data`}
+                    />
+                </div>
+            </div>
+            
         }
 
         {

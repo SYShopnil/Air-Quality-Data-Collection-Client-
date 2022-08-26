@@ -3,7 +3,9 @@ import React, {
     useState
 } from 'react'
 import Link from "next/link"
-const DashboardLayout = ({children}) => {
+import dashboardStyle from "./DashboardLayout.module.css"
+
+const DashboardLayout = ({children, active}) => {
     const [lists, setList] = useState ([
         {
             name: "My Profile",
@@ -32,48 +34,29 @@ const DashboardLayout = ({children}) => {
         },
     ])
   return (
-    <div className = {`container`}>
+    <div className = {`container pb-5`} >
         <div className = {`row`}>
             {/* right navbar part */}
-            <section className = {`col-12 col-md-2`}>
+            <section className = {`col-12 col-md-2`} style = {{paddingTop: "4%",
+    borderRight:"2px solid #C4C6C9"}}>
                 <ul class="nav flex-column">
                     {
                         lists.map ((list, ind) => {
                             return (
                                  <li className= {`nav-item`} key = {list.id}>
                                         <Link href= {list.link}>
-                                            <a className= {`nav-link `} aria-current="page">{list.name}</a>
+                                            <a className= {`nav-link ${list.name == active ? dashboardStyle.textWrapActive : dashboardStyle.textWrapWithOutActive  } `} aria-current="page">{list.name}</a>
                                         </Link>
                                     </li>
                             )
                         })
                     }
                    
-                    {/* <li class="nav-item">
-                        <Link href="/dashboard/addAirData">
-                            <a class="nav-link" href="#">Add Air Data</a>
-                        </Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link href="/dashboard/showMyData">
-                            <a class="nav-link" href="#">Show My Data</a>
-                        </Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link href="/dashboard/addDailyData">
-                            <a class="nav-link" href="#">Add Daily Data</a>
-                        </Link>
-                    </li>
-                    <li class="nav-item">
-                        <Link href="/dashboard/showMyDailyData">
-                            <a class="nav-link" href="#">Show My Daily Data</a>
-                        </Link>
-                    </li> */}
                 </ul>
             </section>
             
             {/* left content part */}
-            <section className = {`col-12 col-md-10`}>
+            <section className = {`col-12 col-md-10 px-3`}>
                 <div>{children}</div>
             </section>
         </div>

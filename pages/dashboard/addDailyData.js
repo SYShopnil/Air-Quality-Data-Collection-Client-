@@ -7,7 +7,7 @@ import AddDailyAirData from '../../src/view/Dashboard/AddDailyAirData'
 const addDailyData = () => {
   return (
     <PrivateRouteAuth>
-      <DashboardLayout>
+      <DashboardLayout active = {`Add Daily Data`}>
               <AddDailyAirData/>
       </DashboardLayout> 
     </PrivateRouteAuth>

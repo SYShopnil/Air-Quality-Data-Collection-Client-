@@ -6,7 +6,7 @@ import ShowMyData from '../../src/view/Dashboard/ShowMyData'
 const showMyData = () => {
   return (
     <PrivateRouteAuth>
-      <DashboardLayout>
+      <DashboardLayout active = {`Show My Data`}>
         <ShowMyData/>
       </DashboardLayout> 
     </PrivateRouteAuth>

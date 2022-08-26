@@ -33,6 +33,11 @@ const MainLayout = (
   //all local state 
   const [isFirstTimeRender, setIsFirstTimeRender] = useState(false)
   const [messageResponse, setMessageResponses] = useState([])
+  const [scrollDirection, setScrollDirection] = useState ("+")
+  let oldScrollPosition = 0 //set the default scroll position 
+  const [isStackNavbar, setIsStackNavbar] = useState (false)
+
+
   //all local variable 
   const route = useRouter()
   
@@ -45,6 +50,8 @@ const MainLayout = (
       loggedOutError(err.message)
     }
   }
+
+  // console.log(scrollDirection)
   //all user effect 
 
   //control the after logout part . It will redirect user to home page after logout successfully 
@@ -59,13 +66,42 @@ const MainLayout = (
     )
     setIsFirstTimeRender (true)
   }, [isLoggedIn])
-  console.log({messageResponse})
-  console.log(`Main layout rendered`)
+
 
    //control the response message part 
   useEffect (() => {
     setMessageResponses (response)
   }, [response])
+
+  //control the scroll down fix navbar part 
+  useEffect (() => {
+    const handleScroll = e => {
+      if (oldScrollPosition < window.scrollY) {
+        setScrollDirection ("+")
+      }else {
+        setScrollDirection ("-")
+      }
+
+      if (oldScrollPosition == 0 && window.scrollY == 0) {
+        setIsStackNavbar(false)
+      }
+      oldScrollPosition = window.scrollY
+    }
+    window.addEventListener ("scroll",handleScroll )
+
+    return () => {
+      window.removeEventListener ("scroll",handleScroll)
+    }
+  }, [])
+  // console.log({isStackNavbar})
+  //navbar stack part 
+  useEffect (() => {
+    scrollDirection == "-"
+    ?
+    setIsStackNavbar(true)
+    :
+    setIsStackNavbar(false)
+  }, [scrollDirection])
   return (
     <div className = {`${mainLayoutStyle.bgFullWrapper}`}>
       {
@@ -75,7 +111,7 @@ const MainLayout = (
           {/* header part */}
           <header>
               {/* navigation bar */}
-              <nav className= {`navbar navbar-expand-lg navbar-light bg-light ${`${mainLayoutStyle.navbar}`} p-2`}>
+              <nav className= {`navbar navbar-expand-lg navbar-light bg-light ${isStackNavbar && "fixed-top"} ${`${mainLayoutStyle.navbar}`} p-2`}>
                 <div className="container">
                   <Link href="/">
                     <a className="navbar-brand" href="#">Air Quality App</a>
@@ -157,39 +193,18 @@ const MainLayout = (
               </nav>
           </header>
 
-          <main style = {{minHeight: "85vh"}} >
+          <main style = {{minHeight: "85vh"}} className = {`mt-5`} >
             {/* other's content part */}
             <div>
               {children}
             </div>
-            {/* message part */}
-{/*     
-              {
-                !!messageResponse.length
-                &&
-                <>
-                  {
-                    messageResponse.map ((msg, ind) => {
-                      // console.log(msg)
-                      return (
-                         <AlertWithCancel
-                            type = {msg.type}
-                            message = {msg.message}
-                            // allMessages = {responseMessage}
-                            // setMessage = {setResponseMessage}
-                          />
-                      )
-                    }) 
-                  }
-                </>
-              } */}
-             
-      
           </main>
 
           {/* footer part */}
-          <footer>
-            <h4>@2022.All Rights Reserved</h4>
+          <footer style = {{background:"#C4C6C9",
+    padding: "0.5%"}} className = {`text-center`}>
+            <p style = {{    color:"#F8F9FA",
+    fontWeight: "bold"}}>@2022.All Rights Reserved</p>
           </footer>
         </>
       }
